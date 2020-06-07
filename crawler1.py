@@ -43,9 +43,8 @@ for index in tqdm(tweet):
     tweet_time = index.date.strftime('%H:%M:%S')
     content = index.text
     retweets = index.retweets
-    favorites = index.favortites
 
-    info_list = [tweet_date, tweet_time, content, retweets, favorites]
+    info_list = [tweet_date, tweet_time, content, retweets]
     tweet_list.append(info_list)
 
     time.sleep(uniform(1, 2))
@@ -53,7 +52,7 @@ for index in tqdm(tweet):
 # 파일 저장
 
 twitter_df = pd.DataFrame(tweet_list,
-                          columns=["date", "time", "text", "retweets", "favorites"])
+                          columns=["date", "time", "text", "retweets"])
 
 twitter_df.to_csv("twitter_data_{}_to_{}.csv".format(days_range[0], days_range[-1]), index=False)
 print("{} tweets are saved".format(len(tweet_list)))
